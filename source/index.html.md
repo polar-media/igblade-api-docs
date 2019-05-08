@@ -32,7 +32,7 @@ The API expects for the API key to be included in all API requests to the server
 You must replace <code>YOUR_API_TOKEN</code> with your personal API key.
 </aside>
 
-# Instagram Accounts
+# Accounts
 
 ## Get profile
 
@@ -322,3 +322,230 @@ Parameter | Description
 --------- | -----------
 start | The starting date for the time-range you want to fetch in ISO 8601 format
 end | The ending date for the time-range you want to fetch in ISO 8601 format
+
+## Get stats
+
+```shell
+curl "https://igblade.com/api/v2/accounts/9gag/stats?start=2019-03-16T00:00:00.000Z&end=2019-04-15T23:59:59.999Z" \
+     -H 'Authorization: Bearer YOUR_API_KEY_HERE'
+```
+
+```javascript
+jQuery.ajax({
+    url: "https://igblade.com/api/v2/accounts/9gag/stats",
+    type: "GET",
+    data: {
+        "start": "2019-03-16T00:00:00.000Z",
+        "end": "2019-04-15T23:59:59.999Z",
+    },
+    headers: {
+        "Authorization": "Bearer YOUR_API_KEY_HERE",
+    },
+})
+.done(function(data, textStatus, jqXHR) {
+    console.log("HTTP Request Succeeded: " + jqXHR.status);
+    console.log(data);
+})
+.fail(function(jqXHR, textStatus, errorThrown) {
+    console.log("HTTP Request Failed");
+})
+.always(function() {
+    /* ... */
+});
+```
+
+```php
+<?php
+
+// get cURL resource
+$ch = curl_init();
+
+// set url
+curl_setopt($ch, CURLOPT_URL, 'https://igblade.com/api/v2/accounts/9gag/stats?start=2019-03-16T00:00:00.000Z&end=2019-04-15T23:59:59.999Z');
+
+// set method
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+// return the transfer as a string
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+// set headers
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+  'Authorization: Bearer YOUR_API_KEY_HERE',
+]);
+
+// send the request and save response to $response
+$response = curl_exec($ch);
+
+// stop if fails
+if (!$response) {
+  die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
+}
+
+echo 'HTTP Status Code: ' . curl_getinfo($ch, CURLINFO_HTTP_CODE) . PHP_EOL;
+echo 'Response Body: ' . $response . PHP_EOL;
+
+// close curl resource to free up system resources 
+curl_close($ch);
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[  
+   {  
+      "account_id":1,
+      "follower_count":50255830,
+      "following_count":28,
+      "media_count":19389,
+      "engagement_rate":0.0116,
+      "created_at":"2019-05-02 00:00:00",
+      "date":"2019-05-02 00:00:00"
+   },
+   ...
+]
+```
+
+This endpoint retrieves historical stats of an Instagram account. 
+
+
+### HTTP Request
+
+`GET https://igblade.com/api/v2/accounts/<USERNAME>/stats`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+USERNAME | The Instagram username of the account you want to fetch
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+start | The starting date for the time-range you want to fetch in ISO 8601 format
+end | The ending date for the time-range you want to fetch in ISO 8601 format
+
+<aside class="success">
+Remember — you must use your API key.
+</aside>
+
+## Get posts
+
+```shell
+curl "https://igblade.com/api/v2/accounts/9gag/posts?start=2019-03-16T00:00:00.000Z&end=2019-04-15T23:59:59.999Z" \
+     -H 'Authorization: Bearer YOUR_API_KEY_HERE'
+```
+
+```javascript
+jQuery.ajax({
+    url: "https://igblade.com/api/v2/accounts/9gag/posts",
+    type: "GET",
+    data: {
+        "start": "2019-03-16T00:00:00.000Z",
+        "end": "2019-04-15T23:59:59.999Z",
+    },
+    headers: {
+        "Authorization": "Bearer YOUR_API_KEY_HERE",
+    },
+})
+.done(function(data, textStatus, jqXHR) {
+    console.log("HTTP Request Succeeded: " + jqXHR.status);
+    console.log(data);
+})
+.fail(function(jqXHR, textStatus, errorThrown) {
+    console.log("HTTP Request Failed");
+})
+.always(function() {
+    /* ... */
+});
+```
+
+```php
+<?php
+
+// get cURL resource
+$ch = curl_init();
+
+// set url
+curl_setopt($ch, CURLOPT_URL, 'https://igblade.com/api/v2/accounts/9gag/posts?start=2019-03-16T00:00:00.000Z&end=2019-04-15T23:59:59.999Z');
+
+// set method
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+// return the transfer as a string
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+// set headers
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+  'Authorization: Bearer YOUR_API_KEY_HERE',
+]);
+
+// send the request and save response to $response
+$response = curl_exec($ch);
+
+// stop if fails
+if (!$response) {
+  die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
+}
+
+echo 'HTTP Status Code: ' . curl_getinfo($ch, CURLINFO_HTTP_CODE) . PHP_EOL;
+echo 'Response Body: ' . $response . PHP_EOL;
+
+// close curl resource to free up system resources 
+curl_close($ch);
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[  
+   {  
+      "account_id":1,
+      "follower_count":50255830,
+      "following_count":28,
+      "media_count":19389,
+      "engagement_rate":0.0116,
+      "created_at":"2019-05-02 00:00:00",
+      "date":"2019-05-02 00:00:00"
+   },
+   ...
+]
+```
+
+This endpoint retrieves posts of an Instagram account. 
+
+
+### HTTP Request
+
+`GET https://igblade.com/api/v2/accounts/<USERNAME>/posts`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+USERNAME | The Instagram username of the account you want to fetch
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+start | The starting date for the time-range you want to fetch in ISO 8601 format
+end | The ending date for the time-range you want to fetch in ISO 8601 format
+
+<aside class="success">
+Remember — you must use your API key.
+</aside>
+
+
+# Alarms
+
+
+
+# Reports
+
+# Clients
+
+# Vault
